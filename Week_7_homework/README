@@ -1,0 +1,35 @@
+terraform init
+terraform validate
+terraform plan -out tfplan
+terraform apply tfplan
+
+terraform output vm_url
+
+
+1. initializing tf (may need to "gcloud auth application-default login") (no need to repeat after the first time)
+2. validating/checking config (no need to repeat after the first time)
+3. plan / course of action of what it will do
+4. application of the plan (only do auto apply if you are committed to the project)
+
+5. gives address to test it
+
+Commands
+
+git init
+terraform plan > tfplan.txt
+git add *.tf
+git status
+git commit -m "Example"
+git branch -M main
+git remote add origin
+
+1. tells github to Manage Folder
+2. output tfplan as a text file (shrinks it)
+3. add all files that end in tf to github
+4. check all the changes i'm making
+5. commit to changes
+6. main branch alterations
+7. retrieving digital address to send the code to
+
+Week 7 homework was wrong and I couldn't find it that way but adding underscores helped
+Week_7_homework (correct)

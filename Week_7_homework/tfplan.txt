@@ -1,0 +1,362 @@
+[0m[1mgoogle_project_service.compute: Refreshing state... [id=dusty-cloud-james-kent/compute.googleapis.com][0m
+[0m[1mgoogle_project_service.container: Refreshing state... [id=dusty-cloud-james-kent/container.googleapis.com][0m
+[0m[1mgoogle_container_cluster.primary: Refreshing state... [id=projects/dusty-cloud-james-kent/locations/us-central1-a/clusters/primary][0m
+[0m[1mgoogle_compute_address.nat: Refreshing state... [id=projects/dusty-cloud-james-kent/regions/us-central1/addresses/nat][0m
+[0m[1mgoogle_compute_network.main: Refreshing state... [id=projects/dusty-cloud-james-kent/global/networks/main][0m
+[0m[1mgoogle_compute_subnetwork.private: Refreshing state... [id=projects/dusty-cloud-james-kent/regions/us-central1/subnetworks/private-subnet][0m
+[0m[1mgoogle_compute_router.router: Refreshing state... [id=projects/dusty-cloud-james-kent/regions/us-central1/routers/router][0m
+[0m[1mgoogle_compute_router_nat.nat: Refreshing state... [id=dusty-cloud-james-kent/us-central1/router/nat][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # google_compute_disk.grafana_disk[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_disk" "grafana_disk" {
+      [32m+[0m[0m access_mode                 = (known after apply)
+      [32m+[0m[0m creation_timestamp          = (known after apply)
+      [32m+[0m[0m disk_id                     = (known after apply)
+      [32m+[0m[0m effective_labels            = (known after apply)
+      [32m+[0m[0m enable_confidential_compute = (known after apply)
+      [32m+[0m[0m id                          = (known after apply)
+      [32m+[0m[0m label_fingerprint           = (known after apply)
+      [32m+[0m[0m last_attach_timestamp       = (known after apply)
+      [32m+[0m[0m last_detach_timestamp       = (known after apply)
+      [32m+[0m[0m licenses                    = (known after apply)
+      [32m+[0m[0m name                        = "grafana-disk"
+      [32m+[0m[0m physical_block_size_bytes   = (known after apply)
+      [32m+[0m[0m project                     = "dusty-cloud-james-kent"
+      [32m+[0m[0m provisioned_iops            = (known after apply)
+      [32m+[0m[0m provisioned_throughput      = (known after apply)
+      [32m+[0m[0m self_link                   = (known after apply)
+      [32m+[0m[0m size                        = 10
+      [32m+[0m[0m source_disk_id              = (known after apply)
+      [32m+[0m[0m source_image_id             = (known after apply)
+      [32m+[0m[0m source_snapshot_id          = (known after apply)
+      [32m+[0m[0m terraform_labels            = (known after apply)
+      [32m+[0m[0m type                        = "pd-standard"
+      [32m+[0m[0m users                       = (known after apply)
+      [32m+[0m[0m zone                        = "us-central1-a"
+    }
+
+[1m  # google_compute_firewall.allow_http[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_firewall" "allow_http" {
+      [32m+[0m[0m creation_timestamp = (known after apply)
+      [32m+[0m[0m destination_ranges = (known after apply)
+      [32m+[0m[0m direction          = (known after apply)
+      [32m+[0m[0m enable_logging     = (known after apply)
+      [32m+[0m[0m id                 = (known after apply)
+      [32m+[0m[0m name               = "allow-http"
+      [32m+[0m[0m network            = "main"
+      [32m+[0m[0m priority           = 1000
+      [32m+[0m[0m project            = "dusty-cloud-james-kent"
+      [32m+[0m[0m self_link          = (known after apply)
+      [32m+[0m[0m source_ranges      = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+
+      [32m+[0m[0m allow {
+          [32m+[0m[0m ports    = [
+              [32m+[0m[0m "80",
+            ]
+          [32m+[0m[0m protocol = "tcp"
+        }
+    }
+
+[1m  # google_compute_firewall.allow_ssh[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_firewall" "allow_ssh" {
+      [32m+[0m[0m creation_timestamp = (known after apply)
+      [32m+[0m[0m destination_ranges = (known after apply)
+      [32m+[0m[0m direction          = (known after apply)
+      [32m+[0m[0m enable_logging     = (known after apply)
+      [32m+[0m[0m id                 = (known after apply)
+      [32m+[0m[0m name               = "allow-ssh"
+      [32m+[0m[0m network            = "main"
+      [32m+[0m[0m priority           = 1000
+      [32m+[0m[0m project            = "dusty-cloud-james-kent"
+      [32m+[0m[0m self_link          = (known after apply)
+      [32m+[0m[0m source_ranges      = [
+          [32m+[0m[0m "0.0.0.0/0",
+        ]
+
+      [32m+[0m[0m allow {
+          [32m+[0m[0m ports    = [
+              [32m+[0m[0m "22",
+            ]
+          [32m+[0m[0m protocol = "tcp"
+        }
+    }
+
+[1m  # google_compute_instance.vm[0m will be created
+[0m  [32m+[0m[0m resource "google_compute_instance" "vm" {
+      [32m+[0m[0m can_ip_forward          = false
+      [32m+[0m[0m cpu_platform            = (known after apply)
+      [32m+[0m[0m current_status          = (known after apply)
+      [32m+[0m[0m deletion_protection     = false
+      [32m+[0m[0m effective_labels        = (known after apply)
+      [32m+[0m[0m guest_accelerator       = (known after apply)
+      [32m+[0m[0m id                      = (known after apply)
+      [32m+[0m[0m instance_id             = (known after apply)
+      [32m+[0m[0m label_fingerprint       = (known after apply)
+      [32m+[0m[0m machine_type            = "e2-medium"
+      [32m+[0m[0m metadata_fingerprint    = (known after apply)
+      [32m+[0m[0m metadata_startup_script = <<-EOT
+            #!/bin/bash
+            sudo apt update -y
+            sudo apt install -y git
+            sudo apt install -y git nginx
+            
+            sudo systemctl enable nginx
+            sudo systemctl start nginx
+            
+            
+            cd /tmp
+            sudo git clone https://github.com/BalericaAI/SEIR-1.git
+            
+            sud0 chmod +x /tmp/SEIR-1/weekly_lessons/weeka/userscripts/supera.sh
+            sudo bash /tmp/SEIR-1/weekly_lessons/weeka/userscripts/supera.sh
+        EOT
+      [32m+[0m[0m min_cpu_platform        = (known after apply)
+      [32m+[0m[0m name                    = "lab-vm"
+      [32m+[0m[0m project                 = "dusty-cloud-james-kent"
+      [32m+[0m[0m self_link               = (known after apply)
+      [32m+[0m[0m tags                    = [
+          [32m+[0m[0m "http",
+          [32m+[0m[0m "http-server",
+          [32m+[0m[0m "ssh",
+        ]
+      [32m+[0m[0m tags_fingerprint        = (known after apply)
+      [32m+[0m[0m terraform_labels        = (known after apply)
+      [32m+[0m[0m zone                    = "us-central1-a"
+
+      [32m+[0m[0m boot_disk {
+          [32m+[0m[0m auto_delete                = true
+          [32m+[0m[0m device_name                = (known after apply)
+          [32m+[0m[0m disk_encryption_key_sha256 = (known after apply)
+          [32m+[0m[0m kms_key_self_link          = (known after apply)
+          [32m+[0m[0m mode                       = "READ_WRITE"
+          [32m+[0m[0m source                     = (known after apply)
+
+          [32m+[0m[0m initialize_params {
+              [32m+[0m[0m image                  = "debian-cloud/debian-11"
+              [32m+[0m[0m labels                 = (known after apply)
+              [32m+[0m[0m provisioned_iops       = (known after apply)
+              [32m+[0m[0m provisioned_throughput = (known after apply)
+              [32m+[0m[0m size                   = 20
+              [32m+[0m[0m type                   = (known after apply)
+            }
+        }
+
+      [32m+[0m[0m network_interface {
+          [32m+[0m[0m internal_ipv6_prefix_length = (known after apply)
+          [32m+[0m[0m ipv6_access_type            = (known after apply)
+          [32m+[0m[0m ipv6_address                = (known after apply)
+          [32m+[0m[0m name                        = (known after apply)
+          [32m+[0m[0m network                     = (known after apply)
+          [32m+[0m[0m network_ip                  = (known after apply)
+          [32m+[0m[0m stack_type                  = (known after apply)
+          [32m+[0m[0m subnetwork                  = "projects/dusty-cloud-james-kent/regions/us-central1/subnetworks/private-subnet"
+          [32m+[0m[0m subnetwork_project          = (known after apply)
+
+          [32m+[0m[0m access_config {
+              [32m+[0m[0m nat_ip       = (known after apply)
+              [32m+[0m[0m network_tier = (known after apply)
+            }
+        }
+    }
+
+[1m  # google_container_cluster.primary[0m will be [1m[31mdestroyed[0m
+  # (because google_container_cluster.primary is not in configuration)
+[0m  [31m-[0m[0m resource "google_container_cluster" "primary" {
+      [31m-[0m[0m cluster_ipv4_cidr                        = "10.48.0.0/14" [90m-> null[0m[0m
+      [31m-[0m[0m default_max_pods_per_node                = 110 [90m-> null[0m[0m
+      [31m-[0m[0m deletion_protection                      = true [90m-> null[0m[0m
+      [31m-[0m[0m enable_autopilot                         = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_cilium_clusterwide_network_policy = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_intranode_visibility              = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_kubernetes_alpha                  = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_l4_ilb_subsetting                 = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_legacy_abac                       = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_multi_networking                  = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_shielded_nodes                    = true [90m-> null[0m[0m
+      [31m-[0m[0m enable_tpu                               = false [90m-> null[0m[0m
+      [31m-[0m[0m endpoint                                 = "34.9.33.196" [90m-> null[0m[0m
+      [31m-[0m[0m id                                       = "projects/dusty-cloud-james-kent/locations/us-central1-a/clusters/primary" [90m-> null[0m[0m
+      [31m-[0m[0m initial_node_count                       = 1 [90m-> null[0m[0m
+      [31m-[0m[0m label_fingerprint                        = "a9dc16a7" [90m-> null[0m[0m
+      [31m-[0m[0m location                                 = "us-central1-a" [90m-> null[0m[0m
+      [31m-[0m[0m logging_service                          = "logging.googleapis.com/kubernetes" [90m-> null[0m[0m
+      [31m-[0m[0m master_version                           = "1.35.1-gke.1396002" [90m-> null[0m[0m
+      [31m-[0m[0m monitoring_service                       = "monitoring.googleapis.com/kubernetes" [90m-> null[0m[0m
+      [31m-[0m[0m name                                     = "primary" [90m-> null[0m[0m
+      [31m-[0m[0m network                                  = "projects/dusty-cloud-james-kent/global/networks/main" [90m-> null[0m[0m
+      [31m-[0m[0m networking_mode                          = "VPC_NATIVE" [90m-> null[0m[0m
+      [31m-[0m[0m node_locations                           = [] [90m-> null[0m[0m
+      [31m-[0m[0m node_version                             = "1.35.1-gke.1396002" [90m-> null[0m[0m
+      [31m-[0m[0m project                                  = "dusty-cloud-james-kent" [90m-> null[0m[0m
+      [31m-[0m[0m remove_default_node_pool                 = true [90m-> null[0m[0m
+      [31m-[0m[0m resource_labels                          = {} [90m-> null[0m[0m
+      [31m-[0m[0m self_link                                = "https://container.googleapis.com/v1/projects/dusty-cloud-james-kent/zones/us-central1-a/clusters/primary" [90m-> null[0m[0m
+      [31m-[0m[0m services_ipv4_cidr                       = "10.52.0.0/20" [90m-> null[0m[0m
+      [31m-[0m[0m subnetwork                               = "projects/dusty-cloud-james-kent/regions/us-central1/subnetworks/private-subnet" [90m-> null[0m[0m
+
+      [31m-[0m[0m addons_config {
+          [31m-[0m[0m dns_cache_config {
+              [31m-[0m[0m enabled = true [90m-> null[0m[0m
+            }
+          [31m-[0m[0m gce_persistent_disk_csi_driver_config {
+              [31m-[0m[0m enabled = true [90m-> null[0m[0m
+            }
+          [31m-[0m[0m horizontal_pod_autoscaling {
+              [31m-[0m[0m disabled = false [90m-> null[0m[0m
+            }
+          [31m-[0m[0m http_load_balancing {
+              [31m-[0m[0m disabled = true [90m-> null[0m[0m
+            }
+          [31m-[0m[0m network_policy_config {
+              [31m-[0m[0m disabled = true [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m binary_authorization {
+          [31m-[0m[0m enabled = false [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m cluster_autoscaling {
+          [31m-[0m[0m auto_provisioning_locations = [] [90m-> null[0m[0m
+          [31m-[0m[0m autoscaling_profile         = "BALANCED" [90m-> null[0m[0m
+          [31m-[0m[0m enabled                     = false [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m database_encryption {
+          [31m-[0m[0m state = "DECRYPTED" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m default_snat_status {
+          [31m-[0m[0m disabled = false [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m ip_allocation_policy {
+          [31m-[0m[0m cluster_ipv4_cidr_block       = "10.48.0.0/14" [90m-> null[0m[0m
+          [31m-[0m[0m cluster_secondary_range_name  = "k8s-pod-range" [90m-> null[0m[0m
+          [31m-[0m[0m services_ipv4_cidr_block      = "10.52.0.0/20" [90m-> null[0m[0m
+          [31m-[0m[0m services_secondary_range_name = "k8s-service-range" [90m-> null[0m[0m
+          [31m-[0m[0m stack_type                    = "IPV4" [90m-> null[0m[0m
+
+          [31m-[0m[0m pod_cidr_overprovision_config {
+              [31m-[0m[0m disabled = false [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m logging_config {
+          [31m-[0m[0m enable_components = [
+              [31m-[0m[0m "SYSTEM_COMPONENTS",
+              [31m-[0m[0m "WORKLOADS",
+            ] [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m master_auth {
+          [31m-[0m[0m cluster_ca_certificate = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVMRENDQXBTZ0F3SUJBZ0lRSkxWSG5LeFBBQjFnV0R1V0wreFcxVEFOQmdrcWhraUc5dzBCQVFzRkFEQXYKTVMwd0t3WURWUVFERXlRd05ESXhNR1JpTUMwd01USTJMVFF4TnpRdFlqTTFOeTFsTTJRMk1tWTFZelZoWTJVdwpJQmNOTWpZd05ERTRNREExTkRVNFdoZ1BNakExTmpBME1UQXdNVFUwTlRoYU1DOHhMVEFyQmdOVkJBTVRKREEwCk1qRXdaR0l3TFRBeE1qWXROREUzTkMxaU16VTNMV1V6WkRZeVpqVmpOV0ZqWlRDQ0FhSXdEUVlKS29aSWh2Y04KQVFFQkJRQURnZ0dQQURDQ0FZb0NnZ0dCQUtMR2ZiVWZkb0xrWEpldXFFc3YvbXUyWURYMXZZakV2eHFHVjJFSAo5Y1ZIdFRvVGhqUU9iZ05oNUhkMXRFVTBrTnpCWjlBdkRpRC9zaFZxOHk5Z0Q3cDNpMVlEMWg4ZTJJSUxkZzd1Ckl4endnOU5hWEdQb1hJUGxsUEp2emZ5U1poY09aWkFSdHJLUmFPNXE3My9mT01MN1B4M3NodU9GdFh1SmZUdUUKbVpqR0xzOUpBaS9hL2tHOWFnMGlJVWhWUzhkdmVHckhSQVFPY0piYjdtbndoV2RZRHVyUkV0dXkyZ0p1ZEE3cApTVmVEc0p2d1VVR01xbVZ3SnlpSXY2UFB3bFo2dCtWYVdNYkpYNjRxVTBzd2NGZ1NBMWdUaWNZSkNVbzJYdERNCjgvb243cEhqemFxMnRyMURBV004TGZHOThYWGhiTzhrRXNvQzZLOW02ZkhGMW9TVXJvRWFzMytMNzFVREc4TUoKSWtCK0VhdXRrS0hIeFpieTZOcXpSa1piYjA0R0hWL0JhT3J5c2F0U2h1WUZscHhVa0xoR3o5ekxqdE1PK0VheQpDc3BLZU95UTBzS3hFMEVrQ0xOWDY1a3M0cE1pelZ6cTFjN0J2cGhTUmhlOGRtTEdPVkNBWTI4Yk95Nm8rYUExCnRhWFpidEFxa2lLVU40NGtNK1d6cU9XQzZ3SURBUUFCbzBJd1FEQU9CZ05WSFE4QkFmOEVCQU1DQWdRd0R3WUQKVlIwVEFRSC9CQVV3QXdFQi96QWRCZ05WSFE0RUZnUVVhWXBVaHRTU05Kc1VrRFlCeTdienFLQUFwbWd3RFFZSgpLb1pJaHZjTkFRRUxCUUFEZ2dHQkFEV1FNV2toS1M5VTJKbThkTStJMVRNenlkYlEzbHlEd0ppN2g3NWZYTktHCmVtTXFNWmI1QUh0SDNWOEM3MmhBRkZqZFIxdDh5Z2I0d1IxbU11R3IxS0ppOTI4TzMyMUIraEFxYjRzQ1FLM0wKU0QrRitUdkFzY045THF6eHBDVCtHS2s0bVRxakRtSlQ3TWNodDNsaE1MUzdRZDl6citMR2NRRXpRemJOdXBhQQpyV3VCNm8vWThNaGpWdmYxT29uN0RPQjg3YXRGamYwY0dSNjA3SUZETVR2UGpMOWR0ajIvMVE0YUR0TmJJUXYyCktVTHBJbUYrUVRObDlLR213S3NpejUwZ0FHYlFuWE5xMEc4dytDYXZwWFlUbXA5Q1Y5dndZWTE1L1F1WE10amEKT20xUUhqMGxQMyt2bUJoN3JuZnlTa2c3ZGNMNElyZDl3SUNQTjZBR2hUM0RSejA0YWpDOUxuRDRIOUQwcERuWQo1ZTBmQXhMUlBFVmpZTnRPVXJFL2VqSHZMK2JQdkJHSUl0bnh4NlUyTWpPSzRZRzA5M3JvRERwY2VQY1FqVDg1CkpZL3g0NUF6c01NWW1HYXgzTUwvSjh1ZzJBUzl1ZncxbUc4YVVBNFFjbEk3R0NTclN0bWNuSCthemdncUJEcHkKclh1Tmlnd00wR2tyZEMwaU9MZ1JEQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K" [90m-> null[0m[0m
+
+          [31m-[0m[0m client_certificate_config {
+              [31m-[0m[0m issue_client_certificate = false [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m monitoring_config {
+          [31m-[0m[0m enable_components = [
+              [31m-[0m[0m "SYSTEM_COMPONENTS",
+              [31m-[0m[0m "DAEMONSET",
+              [31m-[0m[0m "DEPLOYMENT",
+              [31m-[0m[0m "STATEFULSET",
+              [31m-[0m[0m "JOBSET",
+              [31m-[0m[0m "STORAGE",
+              [31m-[0m[0m "HPA",
+              [31m-[0m[0m "POD",
+              [31m-[0m[0m "CADVISOR",
+              [31m-[0m[0m "KUBELET",
+              [31m-[0m[0m "DCGM",
+            ] [90m-> null[0m[0m
+
+          [31m-[0m[0m advanced_datapath_observability_config {
+              [31m-[0m[0m enable_metrics = false [90m-> null[0m[0m
+              [31m-[0m[0m enable_relay   = false [90m-> null[0m[0m
+              [31m-[0m[0m relay_mode     = "DISABLED" [90m-> null[0m[0m
+            }
+
+          [31m-[0m[0m managed_prometheus {
+              [31m-[0m[0m enabled = true [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m network_policy {
+          [31m-[0m[0m enabled  = false [90m-> null[0m[0m
+          [31m-[0m[0m provider = "PROVIDER_UNSPECIFIED" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m node_pool_auto_config {
+          [31m-[0m[0m resource_manager_tags = {} [90m-> null[0m[0m
+
+          [31m-[0m[0m node_kubelet_config {
+              [31m-[0m[0m insecure_kubelet_readonly_port_enabled = "FALSE" [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m node_pool_defaults {
+          [31m-[0m[0m node_config_defaults {
+              [31m-[0m[0m insecure_kubelet_readonly_port_enabled = "FALSE" [90m-> null[0m[0m
+              [31m-[0m[0m logging_variant                        = "DEFAULT" [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m notification_config {
+          [31m-[0m[0m pubsub {
+              [31m-[0m[0m enabled = false [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m private_cluster_config {
+          [31m-[0m[0m enable_private_endpoint = false [90m-> null[0m[0m
+          [31m-[0m[0m enable_private_nodes    = true [90m-> null[0m[0m
+          [31m-[0m[0m master_ipv4_cidr_block  = "172.16.0.0/28" [90m-> null[0m[0m
+          [31m-[0m[0m private_endpoint        = "172.16.0.2" [90m-> null[0m[0m
+          [31m-[0m[0m public_endpoint         = "34.9.33.196" [90m-> null[0m[0m
+
+          [31m-[0m[0m master_global_access_config {
+              [31m-[0m[0m enabled = false [90m-> null[0m[0m
+            }
+        }
+
+      [31m-[0m[0m release_channel {
+          [31m-[0m[0m channel = "REGULAR" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m security_posture_config {
+          [31m-[0m[0m mode               = "BASIC" [90m-> null[0m[0m
+          [31m-[0m[0m vulnerability_mode = "VULNERABILITY_MODE_UNSPECIFIED" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m service_external_ips_config {
+          [31m-[0m[0m enabled = false [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m workload_identity_config {
+          [31m-[0m[0m workload_pool = "dusty-cloud-james-kent.svc.id.goog" [90m-> null[0m[0m
+        }
+    }
+
+[1mPlan:[0m 4 to add, 0 to change, 1 to destroy.
+[0m
+Changes to Outputs:
+  [32m+[0m[0m ssh_command    = "gcloud compute ssh lab-vm --zone us-central1-a"
+  [32m+[0m[0m vm_external_ip = (known after apply)
+  [32m+[0m[0m vm_internal_ip = (known after apply)
+  [32m+[0m[0m vm_name        = "lab-vm"
+[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
